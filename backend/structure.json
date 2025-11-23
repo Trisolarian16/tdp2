@@ -1,0 +1,6 @@
+[
+  { "key": "nombre", "label": "Nombre" },
+  { "key": "apellido", "label": "Apellido" },
+  { "key": "direccion", "label": "Dirección" },
+  { "key": "email", "label": "Email" }
+]

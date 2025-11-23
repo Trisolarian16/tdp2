@@ -1,0 +1,245 @@
+### Inmuebles (lista / ABM)
+GET http://localhost:8080/api/inmuebles
+
+### Obtener inmueble por id (detalle / edición)
+GET http://localhost:8080/api/inmuebles/1
+
+### Crear inmueble
+POST http://localhost:8080/api/inmuebles
+Content-Type: application/json
+
+{
+  "Precio": 100000,
+  "Ambientes": 3,
+  "Banos": 2,
+  "Garage": 1,
+  "Balcon": 0,
+  "Metros_cuadrados": 70,
+  "Fotodir": "img/depto1.jpg",
+  "Titulo": "Depto ejemplo",
+  "Resumen": "Resumen corto",
+  "Descripcion": "Descripción completa del inmueble"
+}
+
+### Actualizar inmueble id=1
+PUT http://localhost:8080/api/inmuebles/5
+Content-Type: application/json
+
+{
+  "Precio": 120000,
+  "Ambientes": 4,
+  "Banos": 2,
+  "Garage": 1,
+  "Balcon": 1,
+  "Metros_cuadrados": 85,
+  "Fotodir": "img/depto1-upd.jpg",
+  "Titulo": "Depto actualizado",
+  "Resumen": "Resumen mod",
+  "Descripcion": "Descripcion modificada"
+}
+
+### Borrar inmueble id=5
+DELETE http://localhost:8080/api/inmuebles/5
+
+### Anuncio por id (vista pública)
+GET http://localhost:8080/api/anuncio/1
+
+##################################################################
+# Provincias
+
+### Listar provincias
+GET http://localhost:8080/api/provincias
+
+### Obtener provincia por id
+GET http://localhost:8080/api/provincias/1
+
+### Crear provincia (sin Id -> se calcula automáticamente)
+POST http://localhost:8080/api/provincias
+Content-Type: application/json
+
+{
+  "Descripcion": "Provincia Ejemplo"
+}
+
+### Crear provincia (con Id explícito)
+POST http://localhost:8080/api/provincias
+Content-Type: application/json
+
+{
+  "IdProvincia": 99,
+  "Descripcion": "Provincia Manual"
+}
+
+### Actualizar provincia id=99
+PUT http://localhost:8080/api/provincias/99
+Content-Type: application/json
+
+{
+  "Descripcion": "Provincia Manual Actualizada"
+}
+
+### Borrar provincia id=99
+DELETE http://localhost:8080/api/provincias/99
+
+##################################################################
+# Partidos
+
+### Listar partidos
+GET http://localhost:8080/api/partidos
+
+### Obtener partido por id
+GET http://localhost:8080/api/partidos/1
+
+### Crear partido (sin Id)
+POST http://localhost:8080/api/partidos
+Content-Type: application/json
+
+{
+  "Descripcion": "Partido Ejemplo",
+  "idProvincia": 1
+}
+
+### Crear partido (con Id)
+POST http://localhost:8080/api/partidos
+Content-Type: application/json
+
+{
+  "IdPartido": 88,
+  "Descripcion": "Partido Manual",
+  "idProvincia": 1
+}
+
+### Actualizar partido id=88
+PUT http://localhost:8080/api/partidos/88
+Content-Type: application/json
+
+{
+  "Descripcion": "Partido Actualizado",
+  "idProvincia": 1
+}
+
+### Borrar partido id=88
+DELETE http://localhost:8080/api/partidos/88
+
+##################################################################
+# Codigos postales
+
+### Listar codigos postales
+GET http://localhost:8080/api/codigos-postales
+
+### Obtener codigo postal por id
+GET http://localhost:8080/api/codigos-postales/1
+
+### Crear codigo postal (sin Id)
+POST http://localhost:8080/api/codigos-postales
+Content-Type: application/json
+
+{
+  "Descripcion": "1000",
+  "IdPartido": 1
+}
+
+### Crear codigo postal (con Id)
+POST http://localhost:8080/api/codigos-postales
+Content-Type: application/json
+
+{
+  "IdCodigoPostal": 777,
+  "Descripcion": "7777",
+  "IdPartido": 1
+}
+
+### Actualizar codigo postal id=777
+PUT http://localhost:8080/api/codigos-postales/777
+Content-Type: application/json
+
+{
+  "Descripcion": "7777-UPDATED",
+  "IdPartido": 1
+}
+
+### Borrar codigo postal id=777
+DELETE http://localhost:8080/api/codigos-postales/777
+
+##################################################################
+# Calles
+
+### Listar calles
+GET http://localhost:8080/api/calles
+
+### Obtener calle por id
+GET http://localhost:8080/api/calles/1
+
+### Crear calle (sin Id)
+POST http://localhost:8080/api/calles
+Content-Type: application/json
+
+{
+  "Descripcion": "Calle Falsa",
+  "IdCodigoPostal": 1
+}
+
+### Crear calle (con Id)
+POST http://localhost:8080/api/calles
+Content-Type: application/json
+
+{
+  "IdCalle": 555,
+  "Descripcion": "Calle Manual",
+  "IdCodigoPostal": 1
+}
+
+### Actualizar calle id=555
+PUT http://localhost:8080/api/calles/555
+Content-Type: application/json
+
+{
+  "Descripcion": "Calle Manual Actualizada",
+  "IdCodigoPostal": 1
+}
+
+### Borrar calle id=555
+DELETE http://localhost:8080/api/calles/555
+
+##################################################################
+### Direcciones (TblDirecciones)
+
+### Listar direcciones
+GET http://localhost:8080/api/direcciones
+
+### Obtener direccion por IdDireccion
+GET http://localhost:8080/api/direcciones/1
+
+### Crear direccion (IdDireccion opcional)
+POST http://localhost:8080/api/direcciones
+Content-Type: application/json
+
+{
+  "IdInmueble": 1,
+  "IdCalle": 1,
+  "Numero": 123,
+  "Piso": 2,
+  "Puerta": 111,
+  "IdCodigoPostal": 1
+}
+
+### Actualizar direccion id=1 (IdDireccion)
+PUT http://localhost:8080/api/direcciones/1
+Content-Type: application/json
+
+{
+  "IdInmueble": 1,
+  "IdCalle": 2,
+  "Numero": 200,
+  "Piso": 3,
+  "Puerta": 6,
+  "IdCodigoPostal": 1
+}
+
+### Borrar direccion id=1
+DELETE http://localhost:8080/api/direcciones/1
+
+##################################################################
+# Notas:
+# - Algunos DELETE pueden fallar por restricciones FK
+##################################################################

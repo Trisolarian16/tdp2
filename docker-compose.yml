@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: tdp2-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - api
+
+  api:
+    container_name: tdp2-api
+    build: ./backend
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: inmuebles_db      
+    #volumes:
+    #  - ./backend:/app
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+
+  db:
+    image: mysql:8.0
+    container_name: tdp2-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inmuebles_db
+    ports:
+      - "3306:3306"
